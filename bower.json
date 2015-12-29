@@ -1,0 +1,18 @@
+{
+  "name": "chronos",
+  "version": "0.0.1",
+  "homepage": "https://github.com/borovikv/chronos",
+  "authors": [
+    "vladimir <vladimir.borovic@gmail.com>"
+  ],
+  "description": "time management app",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/assets/components",
+    "test",
+    "tests"
+  ]
+}
