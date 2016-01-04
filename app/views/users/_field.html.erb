@@ -1,0 +1,9 @@
+<!--name, type -->
+
+<%= div_with_error_class_if(@user.errors[name].present?, class: 'form-group') do %>
+    <%= field.label name, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= field.text_field name, type: type, class: 'form-control', placeholder: name %>
+    </div>
+<% end %>
+

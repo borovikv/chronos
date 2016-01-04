@@ -1,4 +1,4 @@
-<%= form_for(@user, html: {class: 'form-horizontal'} ) do |f| %>
+<%= form_for(@user, html: {class: 'form-horizontal'} ) do |field| %>
 
     <% if @user.errors.any? %>
         <div id="error_explanation" >
@@ -12,30 +12,13 @@
         </div>
     <% end %>
 
+    <%= render('field', field: field, name: :email, type: :email) %>
+    <%= render('field', field: field, name: :password, type: :password) %>
+    <%= render('field', field: field, name: :password_confirmation, type: :password) %>
 
-    <div class="form-group<% if @user.errors[:email].present? %> has-error<%end%>">
-      <%= f.label :email, class: 'col-sm-2 control-label' %>
-      <div class="col-sm-10">
-      <%= f.text_field :email, type: 'email', class: 'form-control', placeholder: 'Email' %>
-      </div>
-    </div>
-
-    <div class="form-group<% if @user.errors[:password].present? %> has-error<%end%>">
-      <%= f.label :password, class: 'col-sm-2 control-label' %>
-      <div class="col-sm-10">
-      <%= f.password_field :password, type: 'password', class: 'form-control', placeholder: 'Password' %>
-      </div>
-    </div>
-
-    <div class="form-group<% if @user.errors[:password_confirmation].present? %> has-error<%end%>">
-      <%= f.label :password_confirmation, class: 'col-sm-2 control-label' %>
-      <div class="col-sm-10">
-      <%= f.password_field :password_confirmation, type: 'password', class: 'form-control', placeholder: 'Password' %>
-      </div>
-    </div>
     <div class="form-group">
       <div class="col-sm-offset-2 col-sm-10">
-        <%= f.button type: 'submit', class: 'btn btn-default' %>
+        <%= field.button type: 'submit', class: 'btn btn-default' %>
       </div>
     </div>
 <% end %>
