@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_and_belongs_to_many :available_boards, class_name: Board
+  has_and_belongs_to_many :available_boards, class_name: 'Board'
 
   validates :email, presence: true, uniqueness:true
   validates :email, format:{
