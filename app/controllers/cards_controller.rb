@@ -1,4 +1,6 @@
 class CardsController < ApplicationController
+  include CurrentBoard
+  before_action :set_board, only: [:create]
   before_action :set_card, only: [:show, :edit, :update, :destroy]
 
   # GET /cards
@@ -69,6 +71,30 @@ class CardsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def card_params
-      params.require(:card).permit(:title, :text, :html, :group_id, :due_date, :start_date)
+      card_params = params.require(:card).permit(:text, :group_id)
+      text = card_params[:text]
+      html = Kramdown::Document.new(text).to_html
+
+      begin
+        group = Group.find(card_params[:group_id])
+      rescue ActiveRecord::RecordNotFound
+        group = Group.new(board: @board)
+      end
+
+      title = get_title_from text
+
+      {text: text, html: html, group: group, title: title}
     end
+
+    def get_title_from(text)
+      title = 'Title'
+      text.split(/[\n\r]+/).each { |line|
+        if line
+          title = line
+          break
+        end
+      }
+      title
+    end
+
 end
