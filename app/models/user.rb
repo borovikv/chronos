@@ -7,4 +7,8 @@ class User < ActiveRecord::Base
       message: "%{value} is incorrect email"
   }
   has_secure_password
+
+  def to_s
+    email
+  end
 end
