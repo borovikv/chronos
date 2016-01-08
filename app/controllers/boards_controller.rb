@@ -10,6 +10,7 @@ class BoardsController < ApplicationController
   # GET /boards/1
   # GET /boards/1.json
   def show
+    session[:board_id] = @board.id
   end
 
   # GET /boards/new

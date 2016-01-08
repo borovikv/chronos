@@ -1,11 +1,13 @@
 <%= form_for(@card) do |f| %>
 
-  <div class="form-group">
-    <%= f.label :text %><br>
-    <%= f.text_area :text, class: 'form-control' %>
-  </div>
+    <%= f.hidden_field :group_id %>
 
-  <div class="form-group">
-    <%= f.button  'OK', type: 'submit', class: 'btn btn-default' %>
-  </div>
+    <div class="form-group">
+      <%= f.label :text %><br>
+      <%= f.text_area :text, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.button  'OK', type: 'submit', class: 'btn btn-default' %>
+    </div>
 <% end %>

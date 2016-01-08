@@ -4,7 +4,7 @@ one:
   title: MyString
   text: MyText
   html: MyText
-  group_id: 
+  group: one
   due_date: 2016-01-04 15:38:01
   start_date: 2016-01-04 15:38:01
 
@@ -12,6 +12,6 @@ two:
   title: MyString
   text: MyText
   html: MyText
-  group_id: 
+  group: two
   due_date: 2016-01-04 15:38:01
   start_date: 2016-01-04 15:38:01

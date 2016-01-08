@@ -1,6 +1,4 @@
 class CardsController < ApplicationController
-  include CurrentBoard
-  before_action :set_board, only: [:create]
   before_action :set_card, only: [:show, :edit, :update, :destroy]
 
   # GET /cards
@@ -75,11 +73,7 @@ class CardsController < ApplicationController
       text = card_params[:text]
       html = Kramdown::Document.new(text).to_html
 
-      begin
-        group = Group.find(card_params[:group_id])
-      rescue ActiveRecord::RecordNotFound
-        group = Group.new(board: @board)
-      end
+      group = Group.find(card_params[:group_id])
 
       title = get_title_from text
 
