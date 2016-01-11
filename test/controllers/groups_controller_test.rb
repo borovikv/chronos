@@ -21,7 +21,7 @@ class GroupsControllerTest < ActionController::TestCase
       post :create, group: { board_id: @group.board_id, name: @group.name }
     end
 
-    assert_redirected_to group_path(assigns(:group))
+    assert_redirected_to board_path(assigns(:group).board)
   end
 
   test "should show group" do
@@ -36,7 +36,7 @@ class GroupsControllerTest < ActionController::TestCase
 
   test "should update group" do
     patch :update, id: @group, group: { board_id: @group.board_id, name: @group.name }
-    assert_redirected_to group_path(assigns(:group))
+    assert_redirected_to board_path(@group.board)
   end
 
   test "should destroy group" do
