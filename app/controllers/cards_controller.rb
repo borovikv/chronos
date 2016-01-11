@@ -69,11 +69,11 @@ class CardsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def card_params
-      card_params = params.require(:card).permit(:text, :group_id)
-      text = card_params[:text]
+      c_params = params.require(:card).permit(:text, :group_id)
+      text = c_params[:text]
       html = Kramdown::Document.new(text).to_html
 
-      group = Group.find(card_params[:group_id])
+      group = Group.find(c_params[:group_id])
 
       title = get_title_from text
 

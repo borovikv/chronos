@@ -1,6 +1,10 @@
 <%= form_for(@card) do |f| %>
 
-    <%= f.hidden_field :group_id %>
+    <% if @card.id %>
+        <%= f.hidden_field :group_id %>
+    <% else %>
+        <%= f.hidden_field :group_id, value: params[:group_id] %>
+    <% end %>
 
     <div class="form-group">
       <%= f.label :text %><br>

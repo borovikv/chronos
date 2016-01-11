@@ -1,14 +1,44 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @board.name %>
-</p>
+<div id="board">
+  <h1 class="board-name"><%= @board.name %></h1>
 
-<p>
-  <strong>User:</strong>
-  <%= @board.user %>
-</p>
+  <div>
+    <%= link_to new_group_path board_id: @board.id do %>
+    <span class="glyphicon glyphicon-plus"></span> New Group
+    <% end %>
+  </div>
 
-<%= link_to 'Edit', edit_board_path(@board) %> |
-<%= link_to 'Back', boards_path %>
+  <% @board.groups.each do |group| %>
+    <div class="panel panel-default group">
+      <div class="panel-heading">
+        <div class="group-heading">
+
+          <%= link_to group.name, group_path(group) %>
+
+          <div class="group-menu">
+            <%= link_to new_card_path group_id: group.id do%>
+                <span class="glyphicon glyphicon-plus"></span> New Card
+            <% end %>
+
+            <%= link_to edit_group_path(group) do%>
+               <span class="glyphicon glyphicon-edit"></span> Edit
+            <% end %>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="panel-body">
+        <ul class="cards list-group">
+          <% group.cards.each do |card| %>
+            <li class="card list-group-item">
+              <%= link_to card.title, card_path(card) %>
+            </li>
+          <% end %>
+        </ul>
+
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -1,25 +1,26 @@
 <%= form_for(@group) do |f| %>
-  <% if @group.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@group.errors.count, "error") %> prohibited this group from being saved:</h2>
+    <% if @group.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@group.errors.count, "error") %> prohibited this group from being saved:</h2>
 
-      <ul>
-      <% @group.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+          <ul>
+            <% @group.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <% if @group.id %>
+      <%= f.hidden_field :board_id %>
+    <% else %>
+      <%= f.hidden_field :board_id, value: params[:board_id] %>
+    <% end %>
+
+    <div class="form-group">
+      <%= f.label :name %><br>
+      <%= f.text_field :name, class: 'form-control', placeholder: 'Name' %>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :board_id %><br>
-    <%= f.text_field :board_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <%= f.button type: 'submit', class: 'btn btn-default' %>
 <% end %>
