@@ -1,5 +1,5 @@
 class CardsController < ApplicationController
-  before_action :set_card, only: [:show, :edit, :update, :destroy]
+  before_action :set_card, only: [:show, :edit, :update, :destroy, :set_group]
 
   # GET /cards
   # GET /cards.json
@@ -58,6 +58,19 @@ class CardsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to cards_url, notice: 'Card was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  # PATCH/PUT /cards/1
+  # PATCH/PUT /cards/1.json
+  def set_group
+    group = Group.find(params[:group_id])
+    @card.group = group
+    respond_to do |format|
+      if @card.save
+        format.html { redirect_to board_url(group.board), notice: 'Card was successfully moved'}
+        format.json { render status: :ok }
+      end
     end
   end
 

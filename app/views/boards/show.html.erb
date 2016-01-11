@@ -5,40 +5,37 @@
 
   <div>
     <%= link_to new_group_path board_id: @board.id do %>
-    <span class="glyphicon glyphicon-plus"></span> New Group
+        <span class="glyphicon glyphicon-plus"></span> New Group
     <% end %>
   </div>
 
   <% @board.groups.each do |group| %>
-    <div class="panel panel-default group">
-      <div class="panel-heading">
-        <div class="group-heading">
+      <div class="group" data-group-id="<%= group.id %>">
+        <div class="group-menu">
+          <%= link_to new_card_path group_id: group.id do %>
+              <span class="glyphicon glyphicon-plus"></span> New Card
+          <% end %>
 
-          <%= link_to group.name, group_path(group) %>
-
-          <div class="group-menu">
-            <%= link_to new_card_path group_id: group.id do%>
-                <span class="glyphicon glyphicon-plus"></span> New Card
-            <% end %>
-
-            <%= link_to edit_group_path(group) do%>
-               <span class="glyphicon glyphicon-edit"></span> Edit
-            <% end %>
-          </div>
+          <%= link_to edit_group_path(group) do %>
+              <span class="glyphicon glyphicon-edit"></span> Edit
+          <% end %>
         </div>
 
-      </div>
+        <div class="group-heading">
+          <%= link_to group.name, group_path(group) %>
+        </div>
 
-      <div class="panel-body">
-        <ul class="cards list-group">
-          <% group.cards.each do |card| %>
-            <li class="card list-group-item">
-              <%= link_to card.title, card_path(card) %>
-            </li>
-          <% end %>
-        </ul>
+        <div class="group-body">
+          <ul class="cards list-group">
+            <% group.cards.each do |card| %>
+                <li class="card list-group-item" data-card-id="<%= card.id %>">
+                  <%= link_to card.title, card_path(card) %>
+                </li>
+            <% end %>
+          </ul>
+        </div>
+
 
       </div>
-    </div>
   <% end %>
 </div>
