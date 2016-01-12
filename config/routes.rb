@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     delete 'logout' => :destroy
   end
 
-  get 'cards/:id/move/' => 'cards#set_group'
+  put 'cards/:id/move/' => 'cards#set_group'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

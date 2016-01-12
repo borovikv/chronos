@@ -46,4 +46,20 @@ class CardsControllerTest < ActionController::TestCase
 
     assert_redirected_to cards_path
   end
+
+  test 'should set group' do
+    group = groups(:two)
+    patch :set_group, id: @card, group_id: group.id
+    assert_redirected_to board_path(group.board)
+    assert_equal(group, Card.find(@card.id).group)
+  end
+
+  test 'should fail set group' do
+    begin
+      patch :set_group, id: @card
+    rescue ActiveRecord::RecordNotFound
+      assert true
+    end
+
+  end
 end

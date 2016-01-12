@@ -17,13 +17,17 @@ $(document).on 'ready page:change', ->
     drop: ( event, ui ) ->
       id = (ui.draggable).attr('data-card-id')
       group_id = $(this).parents('.group').attr('data-group-id')
-      url = "/cards/#{id}/move/?group_id=#{group_id}"
+      url = "/cards/#{id}/move/"
 
       $.ajax({
         url: url,
-        error: ->
+        type: 'POST'
+        data: { _method:'PUT', group_id: group_id}
+
+        error: (jqXHR, textStatus, errorThrown ) ->
           # ToDo: handle error of drop card on group action
-          alert('error')
+          alert(textStatus)
+          alert(errorThrown)
       })
   )
 

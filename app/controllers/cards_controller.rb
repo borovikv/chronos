@@ -64,11 +64,10 @@ class CardsController < ApplicationController
   # PATCH/PUT /cards/1
   # PATCH/PUT /cards/1.json
   def set_group
-    group = Group.find(params[:group_id])
-    @card.group = group
+    @card.group = Group.find(params[:group_id])
     respond_to do |format|
       if @card.save
-        format.html { redirect_to board_url(group.board), notice: 'Card was successfully moved'}
+        format.html { redirect_to board_url(Group.find(params[:group_id]).board), notice: 'Card was successfully moved'}
         format.json { render status: :ok }
       end
     end
