@@ -5,6 +5,7 @@ one:
   text: MyText
   html: MyText
   group: one
+  order: 0
   due_date: 2016-01-04 15:38:01
   start_date: 2016-01-04 15:38:01
 
@@ -13,5 +14,25 @@ two:
   text: MyText
   html: MyText
   group: two
+  order: 0
   due_date: 2016-01-04 15:38:01
   start_date: 2016-01-04 15:38:01
+
+three:
+  title: MyString
+  text: MyText
+  html: MyText
+  group: one
+  order: 0
+  due_date: 2016-01-04 15:38:01
+  start_date: 2016-01-04 15:38:01
+
+four:
+  title: MyString
+  text: MyText
+  html: MyText
+  group: one
+  order: 0
+  due_date: 2016-01-04 15:38:01
+  start_date: 2016-01-04 15:38:01
+

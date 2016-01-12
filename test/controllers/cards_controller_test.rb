@@ -62,4 +62,14 @@ class CardsControllerTest < ActionController::TestCase
     end
 
   end
+
+  test 'should set order' do
+    data = groups(:one).cards.inject({}) {|hash, elem| hash.merge!(elem.id => 1) }
+    patch :set_order, id: @card, data:data
+
+    cards = Card.find(data.keys)
+    cards.each { |card|
+      assert_equal 1, card.order
+    }
+  end
 end

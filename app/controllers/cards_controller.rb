@@ -76,10 +76,8 @@ class CardsController < ApplicationController
   # PATCH/PUT /cards/1
   # PATCH/PUT /cards/1.json
   def set_order
-    puts params[:data]
     data = params[:data]
     data.each { |key, value|
-      puts 'key', key
       card = Card.find(key)
       card.order = value
       card.save

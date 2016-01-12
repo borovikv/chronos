@@ -12,9 +12,11 @@ Rails.application.routes.draw do
     delete 'logout' => :destroy
   end
 
-  put 'cards/:id/move/' => 'cards#set_group'
+  controller :cards do
+    put 'cards/:id/move/' => 'cards#set_group', as: 'set_group'
 
-  put 'cards/:id/order/' => 'cards#set_order'
+    put 'cards/:id/order/' => 'cards#set_order', as: 'set_order'
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
