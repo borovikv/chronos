@@ -27,7 +27,7 @@
 
         <div class="group-body">
           <ul class="cards list-group">
-            <% group.cards.each do |card| %>
+            <% group.cards.order(:order).each do |card| %>
                 <li class="card list-group-item" data-card-id="<%= card.id %>">
                   <%= link_to card.title, card_path(card) %>
                 </li>

@@ -1,5 +1,5 @@
 class CardsController < ApplicationController
-  before_action :set_card, only: [:show, :edit, :update, :destroy, :set_group]
+  before_action :set_card, only: [:show, :edit, :update, :destroy, :set_group, :set_order]
 
   # GET /cards
   # GET /cards.json
@@ -68,8 +68,25 @@ class CardsController < ApplicationController
     respond_to do |format|
       if @card.save
         format.html { redirect_to board_url(Group.find(params[:group_id]).board), notice: 'Card was successfully moved'}
-        format.json { render status: :ok }
+        format.json { head :no_content }
       end
+    end
+  end
+
+  # PATCH/PUT /cards/1
+  # PATCH/PUT /cards/1.json
+  def set_order
+    puts params[:data]
+    data = params[:data]
+    data.each { |key, value|
+      puts 'key', key
+      card = Card.find(key)
+      card.order = value
+      card.save
+    }
+    respond_to do |format|
+      format.html { redirect_to board_url(@card.group.board), notice: 'Card was successfully moved'}
+      format.json {head :no_content }
     end
   end
 

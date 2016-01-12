@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 
   put 'cards/:id/move/' => 'cards#set_group'
 
+  put 'cards/:id/order/' => 'cards#set_order'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
