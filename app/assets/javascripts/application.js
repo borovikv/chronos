@@ -16,3 +16,5 @@
 //= require turbolinks
 //= require_tree .
 //= require bootstrap/dist/js/bootstrap
+//= require moment/min/moment.min
+//= require eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min

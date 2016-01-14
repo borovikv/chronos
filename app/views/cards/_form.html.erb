@@ -7,8 +7,26 @@
     <% end %>
 
     <div class="form-group">
-      <%= f.label :text %><br>
-      <%= f.text_area :text, class: 'form-control' %>
+      <%= f.label :text, class: 'sr-only' %><br>
+      <%= f.text_area :text, class: 'form-control card-text', rows: '20' %>
+    </div>
+
+    <div class="form-group">
+      <div class='input-group date' id='datetimepicker-start-date'>
+        <%= f.text_field :start_date, class: 'form-control' %>
+        <span class="input-group-addon">
+            <span class="glyphicon glyphicon-calendar"></span>
+        </span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class='input-group date' id='datetimepicker-due-date'>
+        <%= f.text_field :due_date, class: 'form-control' %>
+        <span class="input-group-addon">
+            <span class="glyphicon glyphicon-calendar"></span>
+        </span>
+      </div>
     </div>
 
     <div class="form-group">

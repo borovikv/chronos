@@ -14,4 +14,33 @@
  *= require_self
  *= require jquery-ui/themes/smoothness/jquery-ui.css
  *= require bootstrap/dist/css/bootstrap.css
+ *= require eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min
  */
+.bar-container {
+    background: #fcfeff none repeat scroll 0 0;
+    transition-duration: 0.218s;
+    transition-property: background-color, box-shadow;
+    transition-timing-function: ease-in-out;
+}
+.edit-bar {
+    box-sizing: border-box;
+    opacity: 0.3;
+    padding: 4px 0;
+    transition-duration: 0.218s;
+    transition-property: opacity;
+    transition-timing-function: ease-in;
+}
+.edit-bar-container:hover .edit-bar {
+    opacity: 1;
+}
+
+.link-help {
+    opacity: 0;
+    display: none;
+}
+
+.link-help-container:hover .link-help {
+    opacity: 1;
+    display: inline-block;
+    text-decoration: underline;
+}

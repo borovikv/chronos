@@ -5,6 +5,6 @@ class Group < ActiveRecord::Base
   validates :board, presence: true
 
   def to_s
-    'group ' + (name || '') + id.to_s
+    (name || 'group ') + id.to_s
   end
 end

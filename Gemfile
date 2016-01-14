@@ -33,6 +33,7 @@ gem 'bcrypt', '~> 3.1.7'
 # gem 'capistrano-rails', group: :development
 
 gem 'kramdown', '~> 1.9'
+gem 'closure_tree'
 
 
 group :development, :test do

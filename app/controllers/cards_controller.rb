@@ -96,26 +96,19 @@ class CardsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def card_params
-      c_params = params.require(:card).permit(:text, :group_id)
+      c_params = params.require(:card).permit(:text, :group_id, :start_date, :due_date)
       text = c_params[:text]
-      html = Kramdown::Document.new(text).to_html
+      lines = text.lines
+      title = lines.shift || 'Title'
+
+      html = Kramdown::Document.new(lines.join).to_html
 
       group = Group.find(c_params[:group_id])
 
-      title = get_title_from text
 
-      {text: text, html: html, group: group, title: title}
+      c_params.merge({text: text, html: html, group: group, title: title})
     end
 
-    def get_title_from(text)
-      title = 'Title'
-      text.split(/[\n\r]+/).each { |line|
-        if line
-          title = line
-          break
-        end
-      }
-      title
-    end
+
 
 end
