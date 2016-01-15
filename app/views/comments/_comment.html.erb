@@ -1,6 +1,6 @@
 <div class="comment" >
   <div class="comment-heading">
-    Added by <strong><%= comment.user %></strong> on
+    Added by <strong><%= link_to comment.user, user_path(comment.user) %></strong> on
     <%= l(comment.created_at, format: '%d %B %Y %H:%M:%S') %>
   </div>
 
