@@ -1,13 +1,20 @@
 // Place all the styles related to the Cards controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.card-show {
-  .card-title h1 {
+.card-title {
+  h1 {
     display: inline-block;
   }
   .bar-container {
     display: inline-block;
   }
+}
+.card-body {
+  .card-info {
+    margin-bottom: 1em;
+  }
+}
+.card-show {
 
   .comments {
     margin-top: 2em;
@@ -16,4 +23,8 @@
       margin-bottom: 2em;
     }
   }
+}
+
+.card-info {
+  color: #777;
 }

@@ -2,48 +2,16 @@
     <div id="notice"><%= notice %></div>
 <% end %>
 
+<ol class="breadcrumb">
+  <li><%= link_to @card.group.board, board_path(@card.group.board) %></li>
+  <li><%= link_to @card.group, group_path(@card.group) %></li>
+  <li class="active"><%= @card %></li>
+</ol>
+
 <div class="card-show">
-  <ol class="breadcrumb">
-    <li><%= link_to @card.group.board, board_path(@card.group.board) %></li>
-    <li><%= link_to @card.group, group_path(@card.group) %></li>
-    <li class="active"><%= @card %></li>
-  </ol>
-
-  <div class="card-title edit-bar-container page-header">
-    <%= link_to edit_card_path(@card), class: 'link-help-container' do %>
-      <h1><%= @card.title %></h1>
-      <span class="link-help">
-        <span class="glyphicon glyphicon-edit"></span>
-      </span>
-    <% end %>
-
-    <% if @card.start_date || @card.due_date %>
-      <div>
-        <% if @card.start_date %>
-            <span class="label label-default">Start date: <%= @card.start_date %></span>
-        <% end %>
-
-        <% if @card.due_date %>
-            <span class="label label-default">Due date: <%= @card.due_date %></span>
-        <% end %>
-      </div>
-    <% end %>
-
+  <div class="card-title edit-bar-container">
+    <%= render partial: 'cardtitle', locals: { card: @card } %>
   </div>
 
-
-  <div>
-    <%= @card.html.html_safe %>
-  </div>
-
-  <div class="comments">
-    <%= link_to 'Add new comment', new_comment_path(card_id:@card.id), class: 'btn btn-primary add-new-comment' %>
-
-    <%= comments_tree_for @card.comments.hash_tree %>
-  </div>
+  <%= render @card %>
 </div>
-
-
-
-
-

@@ -1,0 +1,25 @@
+<div class="card-content">
+  <div class="card-heading">
+    <%= link_to card.title, card_path(card), remote: true %>
+  </div>
+
+
+    <div class="card-info">
+      <% if card.comments.any? %>
+        <span>
+          <span class="glyphicon glyphicon-comment"></span>
+          <%= card.comments.count %>
+        </span>
+      <% end %>
+    </div>
+
+    <div class="card-operations">
+      <%= link_to edit_card_path(card) do %>
+          <span class="glyphicon glyphicon-pencil"></span>
+      <% end %>
+      <a href="#"><span class="glyphicon glyphicon-plus"></span></a>
+      <a href="#"><span class="glyphicon glyphicon-link"></span></a>
+    </div>
+
+
+</div>

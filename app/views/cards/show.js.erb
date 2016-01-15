@@ -1,0 +1,6 @@
+$('#card-dialog')
+    .find('.modal-title')
+      .html("<%= escape_javascript(render partial: 'cardtitle', locals: { card: @card }) %>").end()
+    .find('.modal-body')
+      .html("<%= escape_javascript(render @card) %>").end()
+    .modal();

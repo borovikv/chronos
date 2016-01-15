@@ -29,7 +29,7 @@
           <ul class="cards list-group">
             <% group.cards.order(:order).each do |card| %>
                 <li class="card list-group-item" data-card-id="<%= card.id %>">
-                  <%= link_to card.title, card_path(card) %>
+                  <%= render partial: 'cards/smallcard', object: card, as: "card" %>
                 </li>
             <% end %>
           </ul>
@@ -38,4 +38,6 @@
 
       </div>
   <% end %>
+
+  <%= render 'cards/dialog' %>
 </div>

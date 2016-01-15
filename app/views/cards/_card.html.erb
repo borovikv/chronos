@@ -1,0 +1,23 @@
+<div class="card-body">
+  <div class="card-info">
+    <% if card.start_date || card.due_date %>
+      <div>
+        <% if card.start_date %>
+            <span class="label label-default">Start date: <%= card.start_date %></span>
+        <% end %>
+
+        <% if card.due_date %>
+            <span class="label label-default">Due date: <%= card.due_date %></span>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <%= card.html.html_safe %>
+</div>
+<div class="comments">
+  <%= link_to 'Add new comment', new_comment_path(card_id:@card.id), class: 'btn btn-primary add-new-comment' %>
+
+  <%= comments_tree_for @card.comments.hash_tree %>
+</div>
+
