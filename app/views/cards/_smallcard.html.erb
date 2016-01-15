@@ -17,8 +17,19 @@
       <%= link_to edit_card_path(card) do %>
           <span class="glyphicon glyphicon-pencil"></span>
       <% end %>
-      <a href="#"><span class="glyphicon glyphicon-plus"></span></a>
-      <a href="#"><span class="glyphicon glyphicon-link"></span></a>
+
+      <%= link_to new_edge_path(card_a_id:card, relation: undirected) do %>
+        <span class="glyphicon glyphicon-link"></span>
+      <% end %>
+
+      <%= link_to new_edge_path(card_a_id:card, relation: parent) do %>
+        <span class="glyphicon glyphicon-plus"></span>
+      <% end %>
+
+      <%= link_to new_edge_path(card_a_id:card, relation: directed) do %>
+        <span class="glyphicon glyphicon-arrow-right"></span>
+      <% end %>
+
     </div>
 
 

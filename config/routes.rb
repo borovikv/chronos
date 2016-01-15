@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :edges
   root 'boards#index'
 
   resources :cards

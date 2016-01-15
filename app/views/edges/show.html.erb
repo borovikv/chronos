@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Card a:</strong>
+  <%= @edge.card_a %>
+</p>
+
+<p>
+  <strong>Card b:</strong>
+  <%= @edge.card_b %>
+</p>
+
+<p>
+  <strong>Relation:</strong>
+  <%= @edge.relation %>
+</p>
+
+<%= link_to 'Edit', edit_edge_path(@edge) %> |
+<%= link_to 'Back', edges_path %>

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  card_a_id: 
+  card_b_id: 
+  relation: 1
+
+two:
+  card_a_id: 
+  card_b_id: 
+  relation: 1
