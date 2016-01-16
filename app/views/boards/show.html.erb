@@ -9,35 +9,7 @@
     <% end %>
   </div>
 
-  <% @board.groups.each do |group| %>
-      <div class="group" data-group-id="<%= group.id %>">
-        <div class="group-menu">
-          <%= link_to new_card_path group_id: group.id do %>
-              <span class="glyphicon glyphicon-plus"></span> New Card
-          <% end %>
-
-          <%= link_to edit_group_path(group) do %>
-              <span class="glyphicon glyphicon-edit"></span> Edit
-          <% end %>
-        </div>
-
-        <div class="group-heading">
-          <%= link_to group.name, group_path(group) %>
-        </div>
-
-        <div class="group-body">
-          <ul class="cards list-group">
-            <% group.cards.order(:order).each do |card| %>
-                <li class="card list-group-item" data-card-id="<%= card.id %>">
-                  <%= render partial: 'cards/smallcard', object: card, as: "card" %>
-                </li>
-            <% end %>
-          </ul>
-        </div>
-
-
-      </div>
-  <% end %>
+  <%= render partial: 'groups/group', collection: @board.groups  %>
 
   <%= render 'cards/dialog' %>
 </div>

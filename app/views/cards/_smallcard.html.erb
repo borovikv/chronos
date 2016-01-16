@@ -1,6 +1,7 @@
 <div class="card-content">
   <div class="card-heading">
     <%= link_to card.title, card_path(card), remote: true %>
+
     <% parent = card.parent  %>
     <% if parent %>
         <span>
@@ -8,6 +9,7 @@
           <%= link_to parent.title , card_path(parent), remote: true %>
         </span>
     <% end %>
+
   </div>
 
 
@@ -22,23 +24,27 @@
     </div>
 
     <div class="card-operations">
-      <%= link_to edit_card_path(card) do %>
+      <%= link_to card_path(card) do %>
+          <span class="glyphicon glyphicon-arrow-up"></span>
+      <% end %>
+
+      <%= link_to edit_card_path(card), remote:true do %>
           <span class="glyphicon glyphicon-pencil"></span>
       <% end %>
 
       <%= link_to new_edge_path(card_a_id:card, relation: undirected) do %>
         <span class="glyphicon glyphicon-link"></span>
-        <span class="badge"><%= card.undirected_relation_cards.count %></span>
+        <span><%= card.undirected_relation_cards.count %></span>
       <% end %>
 
       <%= link_to new_edge_path(card_a_id:card, relation: parent) do %>
         <span class="glyphicon glyphicon-plus"></span>
-        <span class="badge"><%= card.children.count %></span>
+        <span><%= card.children.count %></span>
       <% end %>
 
       <%= link_to new_edge_path(card_a_id:card, relation: directed) do %>
         <span class="glyphicon glyphicon-arrow-right"></span>
-          <span class="badge"><%= card.directed_relation_cards.count %></span>
+          <span><%= card.directed_relation_cards.count %></span>
       <% end %>
 
     </div>

@@ -8,23 +8,6 @@ get_card_url = (card, tail) ->
   id = get_card_id(card)
   "/cards/#{id}/#{tail}/"
 
-ajax_put = (url, data) ->
-  $.ajax({
-    url: url
-    type: 'POST'
-    data: $.extend({_method: 'PUT'}, data)
-    dataType: 'json'
-
-    # success: (data, textStatus, jqXHR) ->
-
-    error: (jqXHR, textStatus, errorThrown) ->
-    # ToDo: handle error of drop card on group action
-      alert(textStatus)
-      alert(errorThrown)
-
-
-  })
-
 $(document).on 'ready page:change', ->
 
   $('.card').draggable({

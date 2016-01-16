@@ -2,6 +2,10 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $(document).on 'ready page:change', ->
-  $('#datetimepicker-start-date,#datetimepicker-due-date').datetimepicker({
+  $('body').dtpicker()
+
+$.fn.dtpicker = ->
+  $(this).find('#datetimepicker-start-date,#datetimepicker-due-date').datetimepicker({
     format: 'YYYY-MM-DD HH:MM:SS'
   })
+  this

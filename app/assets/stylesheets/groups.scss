@@ -1,4 +1,36 @@
 // Place all the styles related to the Groups controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+$border-color: #ddd;
+.group {
+  position: relative;
 
+  .group-menu {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+  }
+
+  .group-body{
+    padding: 5px;
+  }
+}
+
+.group-heading {
+  border: 1px solid $border-color;
+  background: $border-color;
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 120%;
+  padding: 5px;
+}
+
+.cards {
+  min-height: 3em;
+  margin-bottom: 0;
+}
+
+.ui-state-highlight {
+  height: 3.5em;
+  line-height: 2em;
+}

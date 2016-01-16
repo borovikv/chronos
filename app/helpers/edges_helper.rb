@@ -8,4 +8,9 @@ module EdgesHelper
   def directed
     2
   end
+
+  def edge_relation_str(relation)
+    %w(undirected parent directed)[relation]
+  end
+
 end
