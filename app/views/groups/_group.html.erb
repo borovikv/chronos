@@ -1,4 +1,4 @@
-<div class="group" data-group-id="<%= group.id %>">
+<div id="group-<%= group.id %>" class="group" data-group-id="<%= group.id %>">
   <div class="group-menu">
     <%= link_to new_card_path(group_id: group.id), remote: true  do %>
         <span class="glyphicon glyphicon-plus"></span> New Card

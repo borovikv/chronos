@@ -19,42 +19,42 @@
 //= require moment/min/moment.min
 //= require eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min
 
-function ajax_put(url, data, success, error) {
-    ajax_post(url, $.extend({_method: 'PUT'}, data), success, error);
+function ajax_put(url, data) {
+    return ajax_post({
+        url: url,
+        data: $.extend({_method: 'PUT'}, data)
+    });
 }
 
-function ajax_post(url, data, success, error) {
-    $.ajax({
-        url: url,
+function ajax_post(options) {
+
+    var defaultOptions = {
         type: 'POST',
-        data:  data,
         dataType: 'JSON',
 
         error: function(jqXHR, textStatus, errorThrown) {
-            // ToDo: handle error of drop card on group action
-            if (error) {
-                error(jqXHR, textStatus, errorThrown);
-            } else {
-                alert(textStatus);
-                alert(errorThrown);
-            }
+            alert(textStatus);
+            alert(errorThrown);
         }
-
-
-    }).success(success);
+    };
+    return $.ajax($.extend(defaultOptions, options))
 }
 
 
 
-$.fn.set_ajax_submit = function(){
+$.fn.set_ajax_submit = function(success){
     $(this).find('form').submit(function(e) {
         var valuesToSubmit = $(this).serialize();
-
-        ajax_post($(this).attr('action'), valuesToSubmit, function(data, status){
-            alert(JSON.stringify(data))
-            console.log("success", data);
+        ajax_post({
+            url: $(this).attr('action'),
+            data: valuesToSubmit,
+            dataType: 'script'
+        }).success(function(data){
+            if (success) {
+                success(data)
+            }
         });
-        return false; // prevents normal behaviour
+        return false;
     });
   return this;
 };

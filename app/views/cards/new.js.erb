@@ -4,5 +4,8 @@ $('#card-dialog')
     .find('.modal-body')
     .html("<%= escape_javascript(render 'form') %>").end()
     .dtpicker()
-    .set_ajax_submit()
+    .set_ajax_submit(function(){
+      $('#card-dialog').modal('hide')
+    })
+
     .modal();

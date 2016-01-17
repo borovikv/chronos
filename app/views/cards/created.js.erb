@@ -1,0 +1,5 @@
+$('#group-' + <%= @card.group.id %>)
+    .find('.cards')
+    .append(
+        $('<li class="card list-group-item" data-card-id="<%= @card.id %>">')
+            .html("<%= escape_javascript(render(partial: 'cards/smallcard', object: @card, as: 'card')) %>"));
