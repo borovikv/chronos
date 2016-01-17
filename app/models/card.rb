@@ -19,31 +19,24 @@ class Card < ActiveRecord::Base
   end
 
   def children
-    Card.joins(:a_edges).where("edges.card_a_id = #{id} and edges.relation = #{ EdgesController.helpers.parent }")
+    Card.joins(:b_edges).where("edges.card_a_id = #{id} and edges.relation = #{ EdgesController.helpers.parent }")
   end
 
   def related_cards
-    Card.joins(:a_edges).joins(:b_edges)
-        .where("(edges.card_a_id = #{id} or edges.card_b_id = #{id}) " +
-                   "and edges.relation != #{ EdgesController.helpers.parent } " +
-                   "and cards.id != #{id}"
-        ).distinct
+    a_edges.where("relation != #{ EdgesController.helpers.parent }").order('relation')
   end
 
   def directed_relation_cards
-    Card.joins(:a_edges).joins(:b_edges)
-        .where("(edges.card_a_id = #{id} or edges.card_b_id = #{id}) " +
-                   "and edges.relation == #{ EdgesController.helpers.directed } " +
-                   "and cards.id != #{id}"
-        ).distinct
+    a_edges.where("relation == #{ EdgesController.helpers.directed }")
   end
 
   def undirected_relation_cards
-    Card.joins(:a_edges).joins(:b_edges)
-        .where("(edges.card_a_id = #{id} or edges.card_b_id = #{id}) " +
-                   "and edges.relation == #{ EdgesController.helpers.undirected } " +
-                   "and cards.id != #{id}"
-        ).distinct
+    a_edges
+        .where("relation == #{ EdgesController.helpers.undirected }")
+        .merge(
+            b_edges.where("relation == #{ EdgesController.helpers.undirected }")
+        )
+
   end
 
 end
