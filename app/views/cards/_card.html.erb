@@ -23,40 +23,17 @@
   </div>
   <%= card.html.html_safe %>
 
-
-    <% unless card.children.empty? %>
-        children:
-        <ul id="children-cards" class="list-unstyled">
-          <% card.children.each do |card| %>
-              <li><%= link_to card.title , card_path(card), remote: true %></li>
-          <% end %>
-        </ul>
-    <% end %>
-
-    <% unless card.a_edges.empty? %>
-        to
+  <% unless card.related_cards.empty? %>
+      <% card.related_cards.each do |relation, cards| %>
+        <%= relation %>
         <ul id="linked-to-cards" class="list-unstyled">
-
-          <% card.a_edges.where('relation != 1').each do |edge| %>
-              <li>
-                <%= link_to edge.card_b.title , card_path(edge.card_b), remote: true %>
-                <%= edge.relation %>
-              </li>
+          <% cards.each do |card| %>
+            <li><%= link_to card.title , card_path(card), remote: true %></li>
           <% end %>
         </ul>
-    <% end %>
+      <% end %>
+  <% end %>
 
-    <% unless card.b_edges.empty? %>
-        from:
-        <ul class="list-unstyled">
-          <% card.b_edges.where('relation != 1').each do |edge| %>
-              <li>
-                <%= link_to edge.card_a.title , card_path(edge.card_a), remote: true %>
-                <%= edge.relation %>
-              </li>
-          <% end %>
-        </ul>
-    <% end %>
   </div>
 </div>
 <div class="comments">

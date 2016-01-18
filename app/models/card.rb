@@ -9,34 +9,37 @@ class Card < ActiveRecord::Base
   end
 
   def parent
-    begin
-      edge = Edge.where(card_b_id: id, relation: EdgesController.helpers.parent).first
-      edge.card_a
-    rescue
-      nil
-    end
-
-  end
-
-  def children
-    Card.joins(:b_edges).where("edges.card_a_id = #{id} and edges.relation = #{ EdgesController.helpers.parent }")
+    Card.joins(:a_edges).where("edges.card_b_id = #{id} and edges.relation = #{ EdgesController.helpers.parent } and cards.id != #{id}").first
   end
 
   def related_cards
-    a_edges.where("relation != #{ EdgesController.helpers.parent }").order('relation')
+    unless @related
+      @related = edges_to_hash(a_edges)
+      undirected_from_b_side = edges_to_hash(b_edges.where("edges.relation = #{ EdgesController.helpers.undirected }"))
+      @related['undirected'] = @related['undirected'] || []
+      @related['undirected'] += (undirected_from_b_side['undirected']) || []
+    end
+    @related
   end
 
-  def directed_relation_cards
-    a_edges.where("relation == #{ EdgesController.helpers.directed }")
+  def edges_to_hash(edges)
+    related = {}
+    relations = %w(undirected children directed)
+    edges.each do |edge|
+      relation = relations[edge.relation]
+      unless related.has_key? relation
+        related[relation] = []
+      end
+      related[relation].append(edge.get_related_to self)
+    end
+    related
+
   end
 
-  def undirected_relation_cards
-    a_edges
-        .where("relation == #{ EdgesController.helpers.undirected }")
-        .merge(
-            b_edges.where("relation == #{ EdgesController.helpers.undirected }")
-        )
 
+  def children
+    Card.joins(:a_edges).where("edges.relation = #{ EdgesController.helpers.parent }")
   end
+
 
 end

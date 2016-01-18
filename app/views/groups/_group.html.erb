@@ -16,7 +16,7 @@
   <div class="group-body">
     <ul class="cards list-group">
       <% group.cards.order(:order).each do |card| %>
-          <li class="card list-group-item" data-card-id="<%= card.id %>">
+          <li id="card-<%= card.id %>" class="card list-group-item" data-card-id="<%= card.id %>">
             <%= render partial: 'cards/smallcard', object: card, as: "card" %>
           </li>
       <% end %>

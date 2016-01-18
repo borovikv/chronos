@@ -1,0 +1,11 @@
+$('#card-dialog')
+    .find('.modal-title')
+    .html("<%= escape_javascript(@card.title) %>").end()
+    .find('.modal-body')
+    .html("<%= escape_javascript(render 'form') %>").end()
+    .dtpicker()
+    .set_ajax_submit(function(){
+      $('#card-dialog').modal('hide')
+    })
+
+    .modal();

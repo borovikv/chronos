@@ -44,6 +44,7 @@ class CardsController < ApplicationController
     respond_to do |format|
       if @card.update(card_params)
         format.html { redirect_to @card, notice: 'Card was successfully updated.' }
+        format.js { render 'updated', status: :created  }
         format.json { render :show, status: :ok, location: @card }
       else
         format.html { render :edit }

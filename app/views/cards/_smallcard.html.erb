@@ -14,12 +14,6 @@
 
 
     <div class="card-info">
-      <% if card.comments.any? %>
-        <span>
-          <span class="glyphicon glyphicon-comment"></span>
-          <%= card.comments.count %>
-        </span>
-      <% end %>
 
     </div>
 
@@ -34,17 +28,14 @@
 
       <%= link_to new_edge_path(card_a_id:card, relation: undirected) do %>
         <span class="glyphicon glyphicon-link"></span>
-        <span><%= card.undirected_relation_cards.count %></span>
       <% end %>
 
       <%= link_to new_edge_path(card_a_id:card, relation: parent) do %>
         <span class="glyphicon glyphicon-plus"></span>
-        <span><%= card.children.count %></span>
       <% end %>
 
       <%= link_to new_edge_path(card_a_id:card, relation: directed) do %>
         <span class="glyphicon glyphicon-arrow-right"></span>
-          <span><%= card.directed_relation_cards.count %></span>
       <% end %>
 
     </div>
