@@ -1,5 +1,7 @@
 <%= form_for(@card) do |f| %>
 
+    <%= f.hidden_field :parent_id, value:params[:parent_id] %>
+
     <% if @card.id %>
         <%= f.hidden_field :group_id %>
     <% else %>

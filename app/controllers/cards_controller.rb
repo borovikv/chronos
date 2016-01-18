@@ -28,6 +28,10 @@ class CardsController < ApplicationController
 
     respond_to do |format|
       if @card.save
+        if parent
+          edge = Edge.new(card_a: parent, card_b: @card, relation: 1)
+          puts 'edge ', edge.save, edge.id
+        end
         format.html { redirect_to @card, notice: 'Card was successfully created.' }
         format.js { render 'created', status: :created  }
         format.json { render :show, status: :created, location: @card }
@@ -111,6 +115,13 @@ class CardsController < ApplicationController
       c_params.merge({text: text, html: html, group: group, title: title})
     end
 
+    def parent
+      p = params.require(:card).permit(:parent_id)
+      puts 'paams',  params
+      unless p[:parent_id].blank?
+        Card.find p[:parent_id]
+      end
+    end
 
 
 end

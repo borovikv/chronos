@@ -30,8 +30,8 @@
         <span class="glyphicon glyphicon-link"></span>
       <% end %>
 
-      <%= link_to new_edge_path(card_a_id:card, relation: parent) do %>
-        <span class="glyphicon glyphicon-plus"></span>
+      <%= link_to new_card_path(parent_id: card, group_id: card.group.id), remote: true do %>
+        <span class="glyphicon glyphicon-plus"></span> Add child
       <% end %>
 
       <%= link_to new_edge_path(card_a_id:card, relation: directed) do %>
