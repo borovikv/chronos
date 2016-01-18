@@ -28,3 +28,16 @@
 .card-info {
   color: #777;
 }
+
+.card-operations {
+  margin-top: 5px;
+  border-top: 1px solid #DDD;
+  padding-top: 5px;
+  a {
+    display: inline-block;
+  }
+
+  a:after {
+    content: "|";
+  }
+}

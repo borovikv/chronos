@@ -1,1 +1,3 @@
-$("#card-<%= @card.id %>").remove();
+$("#card-<%= @card.id %>").fadeOut("slow", function(){
+  $(this).remove();
+});

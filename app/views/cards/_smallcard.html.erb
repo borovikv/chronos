@@ -20,26 +20,28 @@
     <div class="card-operations">
       <%= link_to card_path(card) do %>
           <span class="glyphicon glyphicon-arrow-up"></span>
+          Show
       <% end %>
 
       <%= link_to card, method: :delete, data: {confirm: 'Are you sure?'}, remote: true do %>
           <span class="glyphicon glyphicon-trash"></span>
+          Delete
       <% end %>
 
       <%= link_to edit_card_path(card), remote:true do %>
           <span class="glyphicon glyphicon-pencil"></span>
+          Edit
+      <% end %>
+
+
+      <%= link_to new_card_path(parent_id: card, group_id: card.group.id), remote: true do %>
+          <span class="glyphicon glyphicon-plus"></span>
+          Add child
       <% end %>
 
       <%= link_to new_edge_path(card_a_id:card, relation: undirected) do %>
-        <span class="glyphicon glyphicon-link"></span>
-      <% end %>
-
-      <%= link_to new_card_path(parent_id: card, group_id: card.group.id), remote: true do %>
-        <span class="glyphicon glyphicon-plus"></span> Add child
-      <% end %>
-
-      <%= link_to new_edge_path(card_a_id:card, relation: directed) do %>
-        <span class="glyphicon glyphicon-arrow-right"></span>
+          <span class="glyphicon glyphicon-link"></span>
+          Link
       <% end %>
 
     </div>
