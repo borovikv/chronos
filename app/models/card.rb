@@ -30,7 +30,7 @@ class Card < ActiveRecord::Base
       unless related.has_key? relation
         related[relation] = []
       end
-      related[relation].append(edge.get_related_to self)
+      related[relation].append([edge.get_related_to(self), edge])
     end
     related
 

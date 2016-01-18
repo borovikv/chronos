@@ -57,6 +57,7 @@ class EdgesController < ApplicationController
     @edge.destroy
     respond_to do |format|
       format.html { redirect_to edges_url, notice: 'Edge was successfully destroyed.' }
+      format.js { render 'deleted' }
       format.json { head :no_content }
     end
   end
