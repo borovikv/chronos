@@ -42,7 +42,7 @@
   </div>
 </div>
 <div class="comments">
-  <%= link_to 'Add new comment', new_comment_path(card_id:@card.id), class: 'btn btn-primary add-new-comment' %>
+  <%= link_to 'Add new comment', new_comment_path(card_id:@card.id), class: 'btn btn-primary add-new-comment', remote: true  %>
 
   <%= comments_tree_for @card.comments.hash_tree %>
 </div>

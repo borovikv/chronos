@@ -8,7 +8,7 @@
     <%= comment.body %>
     <% from_reply_form ||= nil %>
     <% unless from_reply_form %>
-        <div><%= link_to 'reply', new_comment_path(comment.id) %></div>
+        <div><%= link_to 'reply', new_comment_path(comment.id), remote: true %></div>
     <% end %>
   </div>
 
