@@ -39,8 +39,18 @@
 
 .card-operations {
   display: inline-block;
+  vertical-align: middle;
+  height: 30px;
   a {
     display: inline-block;
+    width: 30px;
+    height: 30px;
+    position: relative;
+    .glyphicon {
+      position: absolute;
+      top: 6px;
+      left: 7px;
+    }
   }
   position: absolute;
   right: 5px;
@@ -50,7 +60,6 @@
 
 .card-content {
   .card-link-to {
-
     position: absolute;
     bottom: 5px;
     right: 50%;

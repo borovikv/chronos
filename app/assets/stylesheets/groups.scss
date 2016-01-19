@@ -1,9 +1,10 @@
 // Place all the styles related to the Groups controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-$border-color: #ddd;
+$border-color: #e2e4e6;
 .group {
   position: relative;
+  background: $border-color;
 
   .group-menu {
     position: absolute;
