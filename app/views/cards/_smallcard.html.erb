@@ -14,7 +14,10 @@
 
 
     <div class="card-info">
-
+      <div>
+        <span class="glyphicon glyphicon-link"></span>
+        <span class="card-link-length"><%= card.count_relatives %></span>
+      </div>
     </div>
 
     <div class="card-operations">
@@ -39,10 +42,9 @@
           Add child
       <% end %>
 
-      <%= link_to new_edge_path(card_a_id:card, relation: undirected) do %>
+      <span class='card-link-to' data-toggle="tooltip" data-placement="left" title="Connect to">
           <span class="glyphicon glyphicon-link"></span>
-          Link
-      <% end %>
+      </span>
 
     </div>
 

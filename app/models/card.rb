@@ -41,5 +41,12 @@ class Card < ActiveRecord::Base
     Card.joins(:a_edges).where("edges.relation = #{ EdgesController.helpers.parent }")
   end
 
+  def count_relatives
+    counter = 0
+    related_cards.each do |type, relatives|
+      counter += relatives.length
+    end
+    counter
+  end
 
 end

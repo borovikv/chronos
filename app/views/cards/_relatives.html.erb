@@ -1,0 +1,15 @@
+<% unless relatives.empty? %>
+    <% relatives.each do |relation, cards| %>
+        <%= relation %>
+        <ul id="linked-to-cards" class="list-unstyled">
+          <% cards.each do |card, edge| %>
+              <li id="edge-<%= edge.id %>">
+                <%= link_to card.title , card_path(card), remote: true %>
+                <%= link_to edge, method: :delete, data: { confirm: 'Are you sure?' }, remote: true do %>
+                    <span class="glyphicon glyphicon-trash"></span> Delete
+                <% end %>
+              </li>
+          <% end %>
+        </ul>
+    <% end %>
+<% end %>
