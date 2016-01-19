@@ -14,6 +14,8 @@ $(document).on 'ready page:change', ->
     scope: 'items',
     revert: 'invalid',
     connectToSortable: ".cards",
+    stack: ".card",
+    opacity: 1,
   })
 
   $('.cards').droppable(
@@ -30,7 +32,10 @@ $(document).on 'ready page:change', ->
   $('.cards').sortable(
     connectWith: 'ul',
     revert: true,
+    opacity: 1,
     placeholder: "ui-state-highlight list-group-item"
+    start: (e, ui) ->
+      ui.placeholder.height(ui.item.height());
     update: (event, ui) ->
       data = {}
       $(this).children('.card').each(->

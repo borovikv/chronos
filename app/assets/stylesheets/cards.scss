@@ -1,6 +1,13 @@
 // Place all the styles related to the Cards controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.card {
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  padding: 5px;
+  background: white;
+}
 .card-title {
   h1 {
     display: inline-block;
@@ -26,7 +33,8 @@
 }
 
 .card-info {
-  color: #777;
+  color: #333;
+  margin-bottom: 15px;
 }
 
 .card-operations {
@@ -34,17 +42,34 @@
   a {
     display: inline-block;
   }
-
-}
-
-.card-content .card-link-to{
-  position: absolute;
-  top: 50%;
-  right: 5px;
-}
-
-.delete-card {
   position: absolute;
   right: 5px;
-  top: 5px;
+  bottom: 5px;
+
 }
+
+.card-content {
+  .card-link-to {
+
+    position: absolute;
+    bottom: 5px;
+    right: 50%;
+    border: 1px solid #777;
+    border-radius: 15px;
+    height: 30px;
+    width: 30px;
+    background: whitesmoke;
+    color: #333;
+
+    :hover {
+      cursor: move;
+    }
+
+    .glyphicon {
+      position: absolute;
+      top: 7px;
+      left: 7px;
+    }
+  }
+}
+

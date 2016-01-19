@@ -9,20 +9,26 @@ $border-color: #ddd;
     position: absolute;
     right: 5px;
     top: 5px;
+    a {
+      color: #333;
+    }
   }
 
   .group-body{
     padding: 5px;
   }
+
 }
 
 .group-heading {
   border: 1px solid $border-color;
   background: $border-color;
   margin-bottom: 5px;
-  font-weight: bold;
   font-size: 120%;
   padding: 5px;
+  a {
+    color: #333;
+  }
 }
 
 .cards {

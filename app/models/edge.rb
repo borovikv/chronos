@@ -40,6 +40,4 @@ class Edge < ActiveRecord::Base
 
     end
 
-
-
 end
