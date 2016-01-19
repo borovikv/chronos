@@ -28,14 +28,15 @@ function ajax_put(url, data) {
 
 function ajax_post(options) {
 
+    var error = function(jqXHR, textStatus, errorThrown) {
+        alert(textStatus);
+        alert(errorThrown);
+    };
     var defaultOptions = {
         type: 'POST',
         dataType: 'JSON',
 
-        error: function(jqXHR, textStatus, errorThrown) {
-            alert(textStatus);
-            alert(errorThrown);
-        }
+        error: error
     };
     return $.ajax($.extend(defaultOptions, options))
 }

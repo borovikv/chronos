@@ -65,6 +65,7 @@ $(document).on 'ready page:change', ->
 
         $card = $("#card-#{card_id}")
         $relatives = $card.find(".card-link-length")
+        $card.find('.relatives-info').removeClass('sr-only')
 
         first = {
           backgroundColor: "#acdd4a",
@@ -81,7 +82,12 @@ $(document).on 'ready page:change', ->
 
       ajax_post({
           url:'/edges',
-          data: {edge: {card_a_id: from_card, card_b_id: to_card, relation: relation}}
+          data: {edge: {card_a_id: from_card, card_b_id: to_card, relation: relation}},
+          error: (data) ->
+            if data['status'] == 422
+              alert('The connection between these cards already been created')
+            else
+              alert(JSON.stringify data)
       }).success((data) ->
         animate_card(data, 'card_a_id')
         animate_card(data, 'card_b_id')

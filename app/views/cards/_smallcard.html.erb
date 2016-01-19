@@ -1,49 +1,48 @@
 <div class="card-content">
   <div class="card-heading">
     <%= link_to card.title, card_path(card), remote: true %>
+    <div class="card-operations">
+      <%= link_to card_path(card) do %>
+          <span class="glyphicon glyphicon-open-file" data-toggle="tooltip" data-placement="left" title="Show in new window"></span>
+      <% end %>
 
+      <%= link_to edit_card_path(card), remote:true do %>
+          <span class="glyphicon glyphicon-pencil" data-toggle="tooltip" data-placement="left" title="Edit "></span>
+      <% end %>
+
+      <%= link_to card, method: :delete, data: {confirm: 'Are you sure?'}, class:'delete-card', remote: true do %>
+          <span class="glyphicon glyphicon-trash" data-toggle="tooltip" data-placement="left" title="Delete"></span>
+      <% end %>
+    </div>
     <% parent = card.parent  %>
     <% if parent %>
-        <span>
-            is child of:
+        <div>
+            Is child of:
           <%= link_to parent.title , card_path(parent), remote: true %>
-        </span>
+        </div>
     <% end %>
 
   </div>
 
 
     <div class="card-info">
-      <div>
-        <span class="glyphicon glyphicon-link"></span>
-        <span class="card-link-length"><%= card.count_relatives %></span>
-      </div>
+      <% show_class = card.count_relatives == 0 ? 'sr-only' : ''  %>
+          <div class="relatives-info <%= show_class %>">
+            <span class="glyphicon glyphicon-link"></span>
+            <span class="card-link-length"><%= card.count_relatives %></span>
+          </div>
     </div>
 
-    <div class="card-operations">
-      <%= link_to card_path(card) do %>
-          <span class="glyphicon glyphicon-arrow-up"></span>
-          Show
-      <% end %>
+    <div class="relation-operations">
 
-      <%= link_to card, method: :delete, data: {confirm: 'Are you sure?'}, remote: true do %>
-          <span class="glyphicon glyphicon-trash"></span>
-          Delete
-      <% end %>
-
-      <%= link_to edit_card_path(card), remote:true do %>
-          <span class="glyphicon glyphicon-pencil"></span>
-          Edit
-      <% end %>
 
 
       <%= link_to new_card_path(parent_id: card, group_id: card.group.id), remote: true do %>
-          <span class="glyphicon glyphicon-plus"></span>
-          Add child
+          <span class="glyphicon glyphicon-plus" data-toggle="tooltip" data-placement="left" title="Add child"></span>
       <% end %>
 
       <span class='card-link-to' data-toggle="tooltip" data-placement="left" title="Connect to">
-          <span class="glyphicon glyphicon-link"></span>
+          <span class="glyphicon glyphicon-transfer"></span>
       </span>
 
     </div>

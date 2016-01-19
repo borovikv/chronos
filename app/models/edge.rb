@@ -5,6 +5,7 @@ class Edge < ActiveRecord::Base
   validates :card_a_id, :card_b_id, :relation, presence: true, on: :create
   validate :has_cards, on: :create
   validate :only_one_parent, on: :create
+  validates_uniqueness_of :card_a_id, scope: [:card_b_id, :relation]
 
   def get_related_to(card)
     if card == card_a
