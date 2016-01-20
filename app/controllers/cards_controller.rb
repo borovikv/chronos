@@ -118,7 +118,6 @@ class CardsController < ApplicationController
 
     def parent
       p = params.require(:card).permit(:parent_id)
-      puts 'paams',  params
       unless p[:parent_id].blank?
         Card.find p[:parent_id]
       end

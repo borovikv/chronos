@@ -8,4 +8,8 @@ class Board < ActiveRecord::Base
   def to_s
     name
   end
+
+  def user_have_permission_to_view(u)
+    user == u || users.include?(u)
+  end
 end

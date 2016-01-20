@@ -49,4 +49,8 @@ class Card < ActiveRecord::Base
     counter
   end
 
+  def user_have_permission_to_view(user)
+    group.board.user_have_permission_to_view user
+  end
+
 end

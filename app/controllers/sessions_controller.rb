@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  skip_before_action :authorize
   before_action :session_params, only: [:new, :create, :destroy]
   # GET /sessions/new
   def new
@@ -13,9 +14,11 @@ class SessionsController < ApplicationController
     user = User.find_by(email: session_params[:email])
     if user && user.authenticate(session_params[:password])
       session[:user_id] = user.id
-      redirect_to user, notice: 'Session was successfully created.'
+      redirect_to boards_url
     else
-      render action: 'new', alert: 'Wrong email or password'
+      flash[:alert] = 'Wrong email or password'
+      render action: 'new'
+
     end
   end
 

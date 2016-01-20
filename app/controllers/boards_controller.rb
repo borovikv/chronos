@@ -4,7 +4,7 @@ class BoardsController < ApplicationController
   # GET /boards
   # GET /boards.json
   def index
-    @boards = Board.all.order(:name)
+    @boards = Board.where(user:@current_user).order(:name)
   end
 
   # GET /boards/1
@@ -15,7 +15,7 @@ class BoardsController < ApplicationController
 
   # GET /boards/new
   def new
-    @board = Board.new
+    @board = Board.new(user: @current_user)
   end
 
   # GET /boards/1/edit
