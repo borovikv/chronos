@@ -1,0 +1,22 @@
+<li class="board">
+  <% if is_mine %>
+    <%= render partial: 'my_board', object: board, as: :board %>
+  <% else %>
+    <%= render partial: 'available_board', object: board, as: :board %>
+  <% end %>
+  <div class="board-action-panel">
+    <%= link_to manage_board_path(board),  class: 'board-manage btn btn-default' do %>
+        <span class="glyphicon glyphicon-cog"></span>
+    <% end %>
+
+    <%= link_to edit_board_path(board),  class: 'board-edit btn btn-default' do %>
+        <span class="glyphicon glyphicon-edit"></span>
+    <% end %>
+
+
+    <%= link_to board, method: :delete, class: 'btn btn-default', data: { confirm: 'Are you sure?' } do %>
+        <span class="glyphicon glyphicon-trash"></span>
+    <% end %>
+
+  </div>
+</li>

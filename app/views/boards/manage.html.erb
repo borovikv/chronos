@@ -1,0 +1,9 @@
+<%= render 'add_user_form' %>
+<div class="col-md-8">
+  <% if @board.users.any? %>
+        available to:
+      <ul class="list-group">
+        <%= render partial: 'user', collection: @board.users, locals: {board: @board} %>
+      </ul>
+  <% end %>
+</div>

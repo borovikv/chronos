@@ -4,30 +4,67 @@
 $border-color: #ddd;
 
 #boards {
-  margin-top: 2em;
 
-  li {
-    border-bottom: 1px solid #aaa;
-    position: relative;
-    margin-top: 2em;
+  #boards-list {
+    li {
+      border-bottom: 1px solid #aaa;
+      position: relative;
+      margin-top: 2em;
+    }
+
+    .board-action-panel {
+      display: inline-block;
+      position: absolute;
+      right: 0;
+      top: -15px;
+    }
   }
 
-  .board-action-panel {
-    display: inline-block;
-    position: absolute;
-    right: 0;
-    top: -15px;
+  .user {
+    .remove-user {
+      margin-right: 5px;
+      cursor: pointer;
+      opacity: 0.6;
+      text-decoration: none;
+
+      .glyphicon {
+          vertical-align: middle;
+          top: 0;
+          color: #000;
+        }
+
+      }
+
+    .remove-user:hover {
+      opacity: 1;
+    }
   }
 
+  #board {
+    .group {
+      width: 300px;
+      float: left;
+      margin-left: 25px;
+      border: 1px solid $border-color;
+      border-radius: 4px;
+
+
+    }
+
+    .board-header {
+      margin-bottom: 15px;
+      * {
+        vertical-align: middle;
+      }
+      h1 {
+        display: inline-block;
+      }
+      .nav {
+        display: inline-block;
+        vertical-align: middle;
+      }
+    }
+
+  }
 }
 
-#board {
-  .group {
-    width: 300px;
-    float: left;
-    margin-left: 25px;
-    border: 1px solid $border-color;
-    border-radius: 4px;
-
-  }
-}

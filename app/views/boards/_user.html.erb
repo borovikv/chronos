@@ -1,0 +1,7 @@
+<li id="board-user-<%= user.id %>" class="user list-group-item">
+  <%= link_to remove_board_user_path(board, user_id:user), method: :delete, data: {confirm: 'Are you sure?' }, class:'remove-user', remote:true do %>
+      <span class="glyphicon glyphicon-remove-sign"></span>
+  <% end %>
+
+  <%= user %>
+</li>

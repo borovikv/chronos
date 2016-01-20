@@ -1,5 +1,5 @@
 class BoardsController < ApplicationController
-  before_action :set_board, only: [:show, :edit, :update, :destroy]
+  before_action :set_board, only: [:show, :edit, :update, :destroy, :add_user, :remove_user, :manage]
 
   # GET /boards
   # GET /boards.json
@@ -62,6 +62,46 @@ class BoardsController < ApplicationController
     end
   end
 
+  # POST /boards/1/add-user
+  # POST /boards/1/add-user.json
+  def add_user
+    user = User.find_by(email: params[:email])
+    if user
+
+      if @board.users.include? user
+        respond_to do |format|
+          format.html { redirect_to manage_board_path(@board), notice: "User #{user} already was added to board #{@board}"}
+          format.json { head :no_content }
+        end
+
+      else
+
+        @board.users << user
+        respond_to do |format|
+          format.html { redirect_to manage_board_path(@board), notice: "User #{user} was successfully added to board #{@board}"}
+          format.json { render json: user, status: :ok }
+        end
+
+      end
+    end
+  end
+
+  # DELETE /boards/1/remove-user
+  # DELETE /boards/1/remove-user.json
+  def remove_user
+    user = User.find_by(id: params[:user_id])
+    @board.users.delete(user)
+    respond_to do |format|
+      format.html { manage_board_path @board, notice: "User #{ user } was successfully deleted from board #{@board}." }
+      format.js { render :remove_user, locals: {user: user}}
+      format.json { head :no_content }
+    end
+  end
+
+  # GET /boards/:id/manage/
+  def manage
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_board
@@ -72,4 +112,6 @@ class BoardsController < ApplicationController
     def board_params
       params.require(:board).permit(:name, :user_id)
     end
+
+
 end
