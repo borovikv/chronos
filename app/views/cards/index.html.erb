@@ -5,21 +5,36 @@
 <table class="table">
   <thead>
     <tr>
+      <th></th>
       <th>Title</th>
+      <th>User</th>
+      <th>Board</th>
       <th>Group</th>
-      <th>Due date</th>
       <th>Start date</th>
+      <th>Due date</th>
       <th colspan="2"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @cards.each do |card| %>
-      <tr>
+      <% if card.group.board.user == @current_user %>
+          <% icon = 'glyphicon-ok-sign' %>
+          <% c = 'active' %>
+      <% else %>
+          <% icon = 'glyphicon-cloud' %>
+      <% end %>
+
+      <tr class="<%= c %>">
+        <td>
+          <span class="glyphicon <%= icon %>"></span>
+        </td>
         <td><%= link_to card.title, card %></td>
+        <td><%= card.group.board.user %></td>
+        <td><%= card.group.board %></td>
         <td><%= card.group %></td>
-        <td><%= card.due_date %></td>
-        <td><%= card.start_date %></td>
+        <td><%= I18n.l(card.start_date, format: '%d %B %Y') if card.start_date %></td>
+        <td><%= I18n.l(card.due_date, format: '%d %B %Y') if card.due_date %></td>
         <td><%= link_to 'Edit', edit_card_path(card) %></td>
         <td><%= link_to 'Destroy', card, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

@@ -58,4 +58,20 @@ class Card < ActiveRecord::Base
     group.board.user_can_manage(current_user) || users.include?(current_user)
   end
 
+
+
+
+  def self.search(search, user)
+    if search
+      own_cards = joins(:group => :board).where("text LIKE '%#{search}%' and boards.user_id = #{user.id}").pluck(:id)
+      shered_cards = joins(:group => [:board, {board: :users}]).where("text LIKE '%#{search}%' and #{user.id} or users.id = #{user.id}").pluck(:id)
+
+      Card.where(id: own_cards | shered_cards).order(:title)
+    else
+      find(:all).joins(:group => :board).where("boards.user_id = #{user.id}").order_by(:title)
+    end
+  end
+
+
+
 end
