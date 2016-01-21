@@ -1,0 +1,8 @@
+<li id="card-user-<%= user.id %>" class="user list-group-item">
+
+  <%= link_to destroy_card_user_path(@card, user_id:user), method: :delete, data: {confirm: 'Are you sure?' }, class:'remove-user' do %>
+      <span class="glyphicon glyphicon-remove-sign"></span>
+  <% end %>
+
+  <%= user %>
+</li>

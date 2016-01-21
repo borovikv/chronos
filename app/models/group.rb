@@ -11,4 +11,15 @@ class Group < ActiveRecord::Base
   def user_have_permission_to_view(user)
     board.user_have_permission_to_view(user)
   end
+
+  def get_cards
+    user = User.find_by(id: session[:user_id])
+    board_permission = user.permissions.where(board_id: board).first
+
+    if board_permission.to_card_only
+      cards.joins(:users).where(user:user)
+    else
+      cards
+    end
+  end
 end

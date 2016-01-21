@@ -5,5 +5,15 @@ class Permission < ActiveRecord::Base
 
   validates_inclusion_of :permission, in: PermissionController.helpers.permission_values, message: '%{value} is not a valid'
 
+  def to_read
+    permission == 1
+  end
 
+  def to_edit
+    permission == 2
+  end
+
+  def to_card_only
+    permission == 3
+  end
 end

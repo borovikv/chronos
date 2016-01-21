@@ -1,5 +1,6 @@
 class BoardsController < ApplicationController
   before_action :set_board, only: [:show, :edit, :update, :destroy, :add_user, :remove_user, :manage]
+  before_action :set_user, only: [:remove_user]
 
   # GET /boards
   # GET /boards.json
@@ -94,11 +95,10 @@ class BoardsController < ApplicationController
   # DELETE /boards/1/remove-user
   # DELETE /boards/1/remove-user.json
   def remove_user
-    user = User.find_by(id: params[:user_id])
-    @board.users.delete(user)
+    @board.users.delete(@user)
     respond_to do |format|
       format.html { manage_board_path @board, notice: "User #{ user } was successfully deleted from board #{@board}." }
-      format.js { render :remove_user, locals: {user: user}}
+      format.js { render :remove_user }
       format.json { head :no_content }
     end
   end
@@ -112,6 +112,10 @@ class BoardsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_board
       @board = Board.find(params[:id])
+    end
+
+    def set_user
+      @user = User.find(params[:user_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

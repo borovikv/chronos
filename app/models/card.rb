@@ -3,6 +3,7 @@ class Card < ActiveRecord::Base
   has_many :comments
   has_many :a_edges, class_name: 'Edge', foreign_key: :card_a_id
   has_many :b_edges, class_name: 'Edge', foreign_key: :card_b_id
+  has_and_belongs_to_many :users
 
   def to_s
     title

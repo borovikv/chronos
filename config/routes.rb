@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     put 'cards/:id/move/' => 'cards#set_group', as: 'set_group'
 
     put 'cards/:id/order/' => 'cards#set_order', as: 'set_order'
+
   end
 
   resources :comments, only: [:index, :create]
@@ -25,8 +26,16 @@ Rails.application.routes.draw do
   controller :boards do
     get 'boards/:id/add-user/' => 'boards#add_user', as: 'new_board_user'
     post 'boards/:id/add-user/' => 'boards#add_user', as: 'add_board_user'
-    delete 'boards/:id/remove-user/' => 'boards#remove_user', as: 'remove_board_user'
+    delete 'boards/:id/users/:user_id/destroy' => 'boards#remove_user', as: 'remove_board_user'
     get 'boards/:id/manage/' => 'boards#manage', as: 'manage_board'
+  end
+
+  controller :card_user do
+
+    get 'cards/:id/users/' => 'card_user#show', as: 'show_card_user'
+    get 'cards/:id/users/create' => 'card_user#new', as: 'new_card_user'
+    post 'cards/:id/users/create' => 'card_user#create', as: 'create_card_user'
+    delete 'cards/:id/users/:user_id/destroy' => 'card_user#destroy', as: 'destroy_card_user'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
