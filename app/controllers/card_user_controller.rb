@@ -1,6 +1,7 @@
 class CardUserController < ApplicationController
   before_action :set_card, only: [:show, :destroy, :create, :new]
   before_action :set_user, only: [:create, :destroy]
+  before_action :check_can_manage, only: [:create, :destroy]
   def show
   end
 
@@ -43,5 +44,11 @@ class CardUserController < ApplicationController
 
   def card_user_params
     params.permit(:user_id)
+  end
+
+  def check_can_manage
+    unless @card.user_can_manage(@current_user)
+      redirect_to board_url(@card.group.board)
+    end
   end
 end

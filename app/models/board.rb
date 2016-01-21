@@ -14,4 +14,9 @@ class Board < ActiveRecord::Base
     user == u || users.include?(u)
   end
 
+  def user_can_manage(current_user)
+    permission = users.include?(current_user) ? permissions.where(user_id: current_user).distinct.first : nil
+
+    (user == current_user) || permission && permission.to_edit
+  end
 end

@@ -12,14 +12,17 @@ class Group < ActiveRecord::Base
     board.user_have_permission_to_view(user)
   end
 
-  def get_cards
-    user = User.find_by(id: session[:user_id])
-    board_permission = user.permissions.where(board_id: board).first
-
-    if board_permission.to_card_only
-      cards.joins(:users).where(user:user)
-    else
+  def get_cards(user)
+    if board.user == user
       cards
+    elsif board.users.include? user
+      board_permission = user.permissions.where(board_id: board).distinct.first
+
+      if board_permission && board_permission.to_card_only
+        cards.joins(:users).where("cards_users.user_id = #{user.id}").distinct.order(:order)
+      else
+        cards.order(:order)
+      end
     end
   end
 end

@@ -3,7 +3,7 @@
   <% if @board.users.any? %>
         available to:
       <ul class="list-group">
-        <%= render partial: 'user', collection: @board.users, locals: {board: @board} %>
+        <%= render partial: 'user', collection: @board.permissions, as: 'permission', locals: {board: @board} %>
       </ul>
   <% end %>
 </div>

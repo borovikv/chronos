@@ -8,11 +8,13 @@
   </h1>
 
   <ul class="nav nav-pills">
-    <li role="presentation">
-      <%= link_to manage_board_path(@board),  class: 'board-manage btn btn-default' do %>
-          <span class="glyphicon glyphicon-cog"></span> Settings
-      <% end %>
-    </li>
+    <% if @board.user_can_manage @current_user %>
+      <li role="presentation">
+        <%= link_to manage_board_path(@board),  class: 'board-manage btn btn-default' do %>
+            <span class="glyphicon glyphicon-cog"></span> Settings
+        <% end %>
+      </li>
+    <% end %>
 
     <li role="presentation">
       <%= link_to new_group_path(board_id: @board.id), class: 'btn btn-default' do %>

@@ -1,5 +1,7 @@
 <div id="card-users">
-  <%= render 'card_user/form' %>
+  <% if card.user_can_manage @current_user %>
+    <%= render 'card_user/form' %>
+  <% end %>
 
   <div>
     <ul id="card-users-group" class="list-group">

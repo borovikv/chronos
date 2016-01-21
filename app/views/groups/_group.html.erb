@@ -15,7 +15,7 @@
 
   <div class="group-body">
     <ul class="cards list-unstyled">
-      <% group.cards.order(:order).each do |card| %>
+      <% group.get_cards(@current_user).each do |card| %>
           <li id="card-<%= card.id %>" class="card" data-card-id="<%= card.id %>">
             <%= render partial: 'cards/smallcard', object: card, as: "card" %>
           </li>

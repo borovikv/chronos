@@ -54,4 +54,8 @@ class Card < ActiveRecord::Base
     group.board.user_have_permission_to_view user
   end
 
+  def user_can_manage(current_user)
+    group.board.user_can_manage(current_user) || users.include?(current_user)
+  end
+
 end

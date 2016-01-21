@@ -1,6 +1,7 @@
 class BoardsController < ApplicationController
   before_action :set_board, only: [:show, :edit, :update, :destroy, :add_user, :remove_user, :manage]
   before_action :set_user, only: [:remove_user]
+  before_action :check_can_manage, only: [:manage, :add_user, :remove_user]
 
   # GET /boards
   # GET /boards.json
@@ -105,7 +106,7 @@ class BoardsController < ApplicationController
 
   # GET /boards/:id/manage/
   def manage
-    @permission = Permission.new
+     @permission = Permission.new
   end
 
   private
@@ -125,6 +126,12 @@ class BoardsController < ApplicationController
 
     def permission_params
       params.require(:permission).permit(:email, :permission)
+    end
+
+    def check_can_manage
+      unless @board.user_can_manage(@current_user)
+        redirect_to root_path
+      end
     end
 
 end
