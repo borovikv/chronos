@@ -26,7 +26,10 @@
   <%= render partial:'relatives', object: card.related_cards, as: 'relatives' %>
 
   </div>
+
 </div>
+<%= render partial:'card_user/users', object: card, as: 'card' %>
+
 <div class="comments">
   <%= link_to 'Add new comment', new_comment_path(card_id:@card.id), class: 'btn btn-primary add-new-comment', remote: true  %>
 

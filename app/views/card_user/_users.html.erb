@@ -1,0 +1,9 @@
+<div id="card-users">
+  <%= render 'card_user/form' %>
+
+  <div>
+    <ul id="card-users-group" class="list-group">
+      <%= render partial: 'card_user/user', collection: card.users %>
+    </ul>
+  </div>
+</div>

@@ -11,6 +11,7 @@ class CardUserController < ApplicationController
     respond_to do |format|
       if @card.users << @user
         format.html { redirect_to show_card_user_url(@card), notice: "User #{@user} was added to card #{@card}"}
+        format.js { render :show }
         format.json { head :no_content }
       else
         format.html { render :new }
@@ -24,6 +25,7 @@ class CardUserController < ApplicationController
     @card.users.delete(@user)
     respond_to do |format|
       format.html { redirect_to show_card_user_url(@card), notice: 'User was successfully deleted from card.' }
+      format.js { render :destroy }
       format.json { head :no_content }
     end
   end
@@ -36,7 +38,7 @@ class CardUserController < ApplicationController
   end
 
   def set_user
-    @user = User.find_by_id(params[:user_id])
+    @user = User.find(params[:user_id])
   end
 
   def card_user_params
