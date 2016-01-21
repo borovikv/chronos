@@ -18,11 +18,13 @@
 
   <tbody>
     <% @cards.each do |card| %>
-      <% if card.group.board.user == @current_user %>
+      <% # noinspection RubyResolve
+         if card.group.board.user == @current_user %>
           <% icon = 'glyphicon-ok-sign' %>
           <% c = 'active' %>
       <% else %>
           <% icon = 'glyphicon-cloud' %>
+          <% c = '' %>
       <% end %>
 
       <tr class="<%= c %>">
