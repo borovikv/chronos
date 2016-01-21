@@ -1,0 +1,32 @@
+<div class="col-md-4">
+  <%=form_for(@permission, url: add_board_user_path(@board)) do |f| %>
+      <% if flash[:alert] %>
+          <div id="error_explanation">
+            <%= flash[:alert] %>
+          </div>
+      <% end %>
+      <% if @permission.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@permission.errors.count, "error") %> prohibited this board from being saved:</h2>
+
+            <ul>
+              <% @permission.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+
+      <div class="form-group">
+        <%= f.label :email %>
+        <%= f.text_field :email, value: params[:email], class:'form-control', type: :email %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :permission %>
+        <%= f.select :permission, permission_types, {}, {class: 'form-control'} %>
+      </div>
+
+      <%= button_tag 'Add user', type: :submit, class: 'btn btn-default' %>
+  <% end %>
+</div>

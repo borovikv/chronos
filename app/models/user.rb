@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_many :boards
-  has_and_belongs_to_many :available_boards, class_name: 'Board'
+  has_many :permissions
+  has_many :available_boards, through: :permissions, source: 'board'
 
   validates :email, presence: true, uniqueness:true
   validates :email, format:{

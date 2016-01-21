@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160115092001) do
+ActiveRecord::Schema.define(version: 20160121074953) do
 
   create_table "boards", force: :cascade do |t|
     t.string   "name",       null: false
@@ -21,14 +21,6 @@ ActiveRecord::Schema.define(version: 20160115092001) do
   end
 
   add_index "boards", ["user_id"], name: "index_boards_on_user_id"
-
-  create_table "boards_users", id: false, force: :cascade do |t|
-    t.integer "board_id", null: false
-    t.integer "user_id",  null: false
-  end
-
-  add_index "boards_users", ["board_id", "user_id"], name: "index_boards_users_on_board_id_and_user_id"
-  add_index "boards_users", ["user_id", "board_id"], name: "index_boards_users_on_user_id_and_board_id"
 
   create_table "cards", force: :cascade do |t|
     t.string   "title"
@@ -82,6 +74,17 @@ ActiveRecord::Schema.define(version: 20160115092001) do
   end
 
   add_index "groups", ["board_id"], name: "index_groups_on_board_id"
+
+  create_table "permissions", force: :cascade do |t|
+    t.integer  "board_id"
+    t.integer  "user_id"
+    t.integer  "permission"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "permissions", ["board_id"], name: "index_permissions_on_board_id"
+  add_index "permissions", ["user_id"], name: "index_permissions_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email"

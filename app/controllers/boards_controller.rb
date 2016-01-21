@@ -65,9 +65,8 @@ class BoardsController < ApplicationController
   # POST /boards/1/add-user
   # POST /boards/1/add-user.json
   def add_user
-    user = User.find_by(email: params[:email])
+    user = User.find_by(email: permission_params[:email])
     if user
-
       if @board.users.include? user
         respond_to do |format|
           format.html { redirect_to manage_board_path(@board), notice: "User #{user} already was added to board #{@board}"}
@@ -75,13 +74,19 @@ class BoardsController < ApplicationController
         end
 
       else
-
-        @board.users << user
-        respond_to do |format|
-          format.html { redirect_to manage_board_path(@board), notice: "User #{user} was successfully added to board #{@board}"}
-          format.json { render json: user, status: :ok }
+        puts 'permission_params-', params, permission_params
+        @permission = Permission.new(board: @board, user: user, permission: permission_params['permission'])
+        if @permission.save
+          respond_to do |format|
+            format.html { redirect_to manage_board_path(@board), notice: "User #{user} was successfully added to board #{@board}"}
+            format.json { render json: user, status: :ok }
+          end
         end
 
+      end
+    else
+      respond_to do |format|
+        format.html {redirect_to manage_board_path(@board)}
       end
     end
   end
@@ -100,6 +105,7 @@ class BoardsController < ApplicationController
 
   # GET /boards/:id/manage/
   def manage
+    @permission = Permission.new
   end
 
   private
@@ -113,5 +119,8 @@ class BoardsController < ApplicationController
       params.require(:board).permit(:name, :user_id)
     end
 
+    def permission_params
+      params.require(:permission).permit(:email, :permission)
+    end
 
 end
